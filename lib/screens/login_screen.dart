@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group_study_flutter/screens/user_register_screen.dart';
 import 'package:group_study_flutter/styles/theme_style.dart';
 import 'package:group_study_flutter/widgets/my_text_field.dart';
 
@@ -73,6 +74,12 @@ class LoginScreen extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   // Handle register navigation
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const UserRegisterScreen(),
+                    ),
+                  );
                 },
                 child: const Text(
                   "Don't have an account? Register",
