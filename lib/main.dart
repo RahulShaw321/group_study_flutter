@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:group_study_flutter/screens/group_details_screen.dart';
 import 'package:group_study_flutter/screens/home_screen.dart';
+import 'package:group_study_flutter/screens/login_screen.dart';
 import 'package:group_study_flutter/styles/theme_style.dart';
 
 void main() {
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
 ),
        initialRoute: '/',
       routes: {
-        '/': (context) => const HomeScreen(),
+        '/': (context) => const LoginScreen(),
         '/group-detail': (context) => const GroupDetailScreen(
               subjectName: '',
               description: '',
