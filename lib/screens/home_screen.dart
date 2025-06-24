@@ -77,6 +77,7 @@ class HomeScreen extends StatelessWidget {
                     .map(
                       (subject) => GroupCard(
                         iconDirectory: subject.icon,
+                        deviceSize: deviceSize,
                         subjectName: subject.name,
                         cardColor: subject.cardColor,
                         onTap: () {},

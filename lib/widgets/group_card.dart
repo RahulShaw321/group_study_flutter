@@ -4,59 +4,88 @@ class GroupCard extends StatelessWidget {
   final String iconDirectory;
   final String subjectName;
   final Color cardColor;
-  final Function onTap;
+  final VoidCallback onTap;
+  final deviceSize;
+
   const GroupCard({
-    super.key,
+    Key? key,
     required this.iconDirectory,
     required this.subjectName,
-    required this.onTap,
     required this.cardColor,
-  });
+    required this.onTap,
+    this.deviceSize,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: SizedBox(
-        height: 150.0,
-        width: 360,
-        child: Card(
-          elevation: 2,
-          shape: RoundedRectangleBorder(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(30),
+        child: Container(
+          width: deviceSize.width * 0.9,
+          height: deviceSize.height * 0.16,
+          decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-          ),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              gradient: LinearGradient(
-                colors: [cardColor.withAlpha(180), Colors.white],
-                begin: Alignment.centerLeft,
-                end: Alignment.topRight,
+            gradient: LinearGradient(
+              colors: [cardColor.withAlpha(120), Colors.white],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: cardColor.withAlpha(60),
+                blurRadius: 12,
+                offset: Offset(0, 6),
               ),
-            ),
-            child: Row(
-              children: [
-                SizedBox(width: 30),
-                Image.asset(iconDirectory, scale: 6,colorBlendMode: BlendMode.colorDodge,),
-                SizedBox(width: 20),
-
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 40),
-
-                    Text(
-                      subjectName,
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Text("Tap to join"),
-                  ],
+            ],
+          ),
+          child: Row(
+            children: [
+              const SizedBox(width: 20),
+              Container(
+                height: 70,
+                width: 70,
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.white.withAlpha(200),
+                  shape: BoxShape.circle,
                 ),
-              ],
-            ),
+                child: Image.asset(
+                  iconDirectory,
+                  fit: BoxFit.contain,
+                  colorBlendMode: BlendMode.modulate,
+                ),
+              ),
+              const SizedBox(width: 20),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 25),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        subjectName,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        "Tap to join",
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyMedium?.copyWith(color: Colors.black54),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(width: 20),
+            ],
           ),
         ),
       ),
