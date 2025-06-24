@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group_study_flutter/screens/group_details_screen.dart';
 import 'package:group_study_flutter/screens/home_screen.dart';
 import 'package:group_study_flutter/styles/theme_style.dart';
 
@@ -30,7 +31,15 @@ class MyApp extends StatelessWidget {
     bodyMedium: TextStyle(color: Color(0xFF303030)),
   ),
 ),
-      home: const HomeScreen(),
+       initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/group-detail': (context) => const GroupDetailScreen(
+              subjectName: '',
+              description: '',
+              cardColor: Colors.deepPurple,
+            ),
+      },
     );
   }
 }

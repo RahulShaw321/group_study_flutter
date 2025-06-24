@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:group_study_flutter/models/subject_model.dart';
-import 'package:group_study_flutter/styles/theme_style.dart';
+import 'package:group_study_flutter/screens/group_details_screen.dart';
 import 'package:group_study_flutter/widgets/group_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-       
+
         elevation: 0,
         title: Text(
           "Group Study App",
@@ -40,14 +40,14 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 width: deviceSize.width * 0.9,
                 height: deviceSize.height * 0.34,
-    
+
                 child: Card(
                   color: Theme.of(context).colorScheme.surface,
                   elevation: 1,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
-    
+
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -80,12 +80,24 @@ class HomeScreen extends StatelessWidget {
                         deviceSize: deviceSize,
                         subjectName: subject.name,
                         cardColor: subject.cardColor,
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => GroupDetailScreen(
+                                subjectName: subject.name,
+                                description: subject.description,
+                                cardColor: subject.cardColor,
+                                deviceSize: deviceSize,
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     )
                     .toList(),
               ),
-              SizedBox(height: 20,)
+              SizedBox(height: 20),
             ],
           ),
         ),

@@ -16,6 +16,7 @@ final ColorScheme pastelColorScheme = ColorScheme(
   tertiary: Color(0xFF6C63FF),     // Deep purple (Chat header/icons)
   onTertiary: Colors.white,
 
+
   error: Color(0xFFFF6F61),
   onError: Colors.white,
 );
@@ -31,3 +32,15 @@ BoxDecoration gradientBackground = const BoxDecoration(
 )
 
 );
+
+
+//Darken Feature
+extension ColorBrightness on Color {
+  Color darken([double amount = .1]) {
+    assert(amount >= 0 && amount <= 1);
+    final hsl = HSLColor.fromColor(this);
+    final darkened = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
+    return darkened.toColor();
+  }
+}
+
