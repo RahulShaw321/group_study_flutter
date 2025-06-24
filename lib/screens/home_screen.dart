@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:group_study_flutter/models/subject_model.dart';
+import 'package:group_study_flutter/styles/theme_style.dart';
 import 'package:group_study_flutter/widgets/group_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,11 +10,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
+       
         elevation: 0,
-        backgroundColor: Colors.transparent,
         title: Text(
           "Group Study App",
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -33,20 +33,21 @@ class HomeScreen extends StatelessWidget {
         height: deviceSize.height,
         width: deviceSize.width,
         child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Column(
             children: [
               SizedBox(height: 25),
               SizedBox(
                 width: deviceSize.width * 0.9,
                 height: deviceSize.height * 0.34,
-
+    
                 child: Card(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                   elevation: 1,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
-
+    
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
