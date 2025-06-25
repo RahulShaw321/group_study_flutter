@@ -81,16 +81,15 @@ class HomeScreen extends StatelessWidget {
                         subjectName: subject.name,
                         cardColor: subject.cardColor,
                         onTap: () {
-                          Navigator.push(
+                          Navigator.pushNamed(
                             context,
-                            MaterialPageRoute(
-                              builder: (_) => GroupDetailScreen(
-                                subjectName: subject.name,
-                                description: subject.description,
-                                cardColor: subject.cardColor,
-                                deviceSize: deviceSize,
-                              ),
-                            ),
+                            '/group-detail',
+                            arguments: {
+                              'subjectName': subject.name,
+                              'description':subject.description,
+                              'cardColor': subject.cardColor,
+                              'deviceSize' : deviceSize
+                            },
                           );
                         },
                       ),

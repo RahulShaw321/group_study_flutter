@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group_study_flutter/screens/group_chat_screen.dart';
 import 'package:group_study_flutter/styles/theme_style.dart';
 
 class GroupDetailScreen extends StatelessWidget {
@@ -11,12 +12,12 @@ class GroupDetailScreen extends StatelessWidget {
     super.key,
     required this.subjectName,
     required this.description,
-    required this.cardColor, this.deviceSize,
+    required this.cardColor,
+    this.deviceSize,
   });
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text(subjectName),
@@ -28,10 +29,7 @@ class GroupDetailScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              cardColor.withOpacity(0.1),
-              Colors.white,
-            ],
+            colors: [cardColor.withOpacity(0.1), Colors.white],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -55,40 +53,48 @@ class GroupDetailScreen extends StatelessWidget {
             const SizedBox(height: 30),
             const Text(
               "Resources:",
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w600,
-              ),
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 10),
             ...[
               "📘 Chapter Notes",
               "💬 Group Chat",
-              "🖋️📜 Text-to-Speech        "
-            ].map((item) => ListTile(
-                  leading: const Icon(Icons.check_circle_outline),
-                  title: Text(item),
-                )),
+              "🖋️📜 Text-to-Speech        ",
+            ].map(
+              (item) => ListTile(
+                leading: const Icon(Icons.check_circle_outline),
+                title: Text(item),
+              ),
+            ),
             const Spacer(),
             Center(
               child: ElevatedButton.icon(
                 onPressed: () {
                   // Join logic here
+                  Navigator.pushNamed(
+                    context,
+                    '/group-chat-screen',
+                    arguments: {
+                      'guid': subjectName.toLowerCase().replaceAll(' ', '_'),
+                      'groupName': subjectName,
+                      'cardColor':cardColor
+                    },
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: cardColor,
                   foregroundColor: pastelColorScheme.onPrimary,
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                    vertical: 14,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                
+
                 icon: const Icon(Icons.group_add_rounded),
-                label: const Text(
-                  "Join Group",
-                  style: TextStyle(fontSize: 18),
-                ),
+                label: const Text("Join Group", style: TextStyle(fontSize: 18)),
               ),
             ),
             const SizedBox(height: 20),
