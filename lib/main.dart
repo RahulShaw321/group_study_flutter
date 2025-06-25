@@ -10,7 +10,7 @@ import 'package:group_study_flutter/styles/theme_style.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(); 
 
   await CometChatUIKit.init(
     uiKitSettings:

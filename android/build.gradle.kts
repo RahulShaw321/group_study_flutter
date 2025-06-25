@@ -1,8 +1,14 @@
+plugins {
+    // Add the dependency for the Google services Gradle plugin
+    id("com.google.gms.google-services") version "4.4.2" apply false
+}
+
 allprojects {
     repositories {
         google()
         mavenCentral()
     }
+  
 }
 
 val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
@@ -20,10 +26,12 @@ tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
 
-// android/build.gradle.kts
-
 buildscript {
     dependencies {
-        classpath("com.google.gms:google-services:4.3.15")
+        classpath("com.google.gms:google-services:4.3.15") // <-- Add this line
     }
 }
+
+// android/build.gradle.kts
+
+

@@ -1,9 +1,9 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("com.google.gms.google-services")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
-    id("com.google.gms.google-services")
     
 }
 
@@ -45,7 +45,12 @@ flutter {
     source = "../.."
 }
 dependencies {
-    implementation("com.google.firebase:firebase-auth-ktx:22.3.1") // or latest
-    // Optional: Firebase Core Analytics or other packages
-}
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.11.0")
 
+    // ✅ Firebase Auth dependency
+    implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
+    
+    // (Optional) Add other Firebase libs here, e.g., Firestore, Analytics, etc.
+}
